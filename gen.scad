@@ -4,8 +4,10 @@ NAME = "JEREMIAH";
 MAX_WIDTH = 200;
 BASE_DEPTH = 2;
 SLOT_DEPTH = 10;
-PADDING = 2;
-FONT = "Liberation Mono";
+BORDER_RADIUS=10;
+PADDING = -4;
+
+FONT = "Comic Sans MS";
 
 module name(value, size, bold = true) {
   bold_font = str(FONT, ":style=Bold");
@@ -19,25 +21,28 @@ function namelen(value, size) = measureText(
 
 module name_box(value, width, base_depth, slot_depth, font_size) {
   module name_square() {
-    translate([-PADDING, -PADDING, 0]) {
-      square(
-        [width + (2 * PADDING),
-        font_size + (2 * PADDING)]
-      );
-    }
-  }
-  
-  translate([PADDING, PADDING, 0]) {
-    linear_extrude(base_depth) {
-      name_square();
-    }
-    linear_extrude(base_depth + slot_depth) {
-      difference() {
-        name_square();
-        name(value, font_size);
+    minkowski() {
+      circle(r=BORDER_RADIUS);
+      translate([-PADDING, -PADDING, 0]) {
+        square(
+          [width + (2 * PADDING),
+          font_size + (2 * PADDING)]
+        );
       }
     }
   }
+
+	translate([PADDING, PADDING, 0]) {
+		linear_extrude(base_depth) {
+			name_square();
+		}
+		linear_extrude(base_depth + slot_depth) {
+			difference() {
+				name_square();
+				name(value, font_size);
+			}
+		}
+	}
 }
 
 module name_3d(value, base_depth, slot_depth, font_size) {
