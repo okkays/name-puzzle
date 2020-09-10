@@ -6,10 +6,10 @@ BASE_DEPTH = 2;
 SLOT_DEPTH = 10;
 PADDING = 2;
 FONT = "Liberation Mono";
-BOLD_FONT = "Liberation Mono:style=Bold";
 
 module name(value, size, bold = true) {
-  text(value, size, font = bold ? BOLD_FONT : FONT);
+  bold_font = str(FONT, ":style=Bold");
+  text(value, size, font = bold ? bold_font : FONT);
 }
 
 function namelen(value, size) = measureText(
