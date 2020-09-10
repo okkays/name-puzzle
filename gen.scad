@@ -32,17 +32,17 @@ module name_box(value, width, base_depth, slot_depth, font_size) {
     }
   }
 
-	translate([PADDING, PADDING, 0]) {
-		linear_extrude(base_depth) {
-			name_square();
-		}
-		linear_extrude(base_depth + slot_depth) {
-			difference() {
-				name_square();
-				name(value, font_size);
-			}
-		}
-	}
+  translate([PADDING, PADDING, 0]) {
+    linear_extrude(base_depth) {
+      name_square();
+    }
+    linear_extrude(base_depth + slot_depth) {
+      difference() {
+        name_square();
+        name(value, font_size);
+      }
+    }
+  }
 }
 
 module name_3d(value, base_depth, slot_depth, font_size) {
