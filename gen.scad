@@ -6,17 +6,24 @@ BASE_DEPTH = 2;
 SLOT_DEPTH = 10;
 BORDER_RADIUS=10;
 PADDING = -4;
+FONT_SPACING = 1;
 
-FONT = "Comic Sans MS";
+FONT = "Liberation Mono";
 
 module name(value, size, bold = true) {
   bold_font = str(FONT, ":style=Bold");
-  text(value, size, font = bold ? bold_font : FONT);
+  text(
+    value,
+    size,
+    spacing=FONT_SPACING,
+    font = bold ? bold_font : FONT
+  );
 }
 
 function namelen(value, size) = measureText(
     value,
     font=FONT,
+    spacing=FONT_SPACING,
     size=size);
 
 module name_box(value, width, base_depth, slot_depth, font_size) {
