@@ -1,14 +1,15 @@
 use <fontmetrics.scad>; // https://www.thingiverse.com/thing:3004457
 
 NAME = "JEREMIAH";
-MAX_WIDTH = 200;
-BASE_DEPTH = 2;
-SLOT_DEPTH = 10;
-BORDER_RADIUS=10;
-PADDING = -4;
-FONT_SPACING = 1;
+MAX_WIDTH = 220;
+BASE_DEPTH = MAX_WIDTH / 100;
+SLOT_DEPTH = MAX_WIDTH / 20;
+BORDER_RADIUS= MAX_WIDTH / 20;
+PADDING = -(MAX_WIDTH / 50);
+FONT_SPACING = 1.1;
+HEIGHT_SHRINKAGE = 0.00;
 
-FONT = "Liberation Mono";
+FONT = "Instruction";
 
 module name(value, size, bold = true) {
   bold_font = str(FONT, ":style=Bold");
@@ -53,8 +54,8 @@ module name_box(value, width, base_depth, slot_depth, font_size) {
 }
 
 module name_3d(value, base_depth, slot_depth, font_size) {
-  scale([1, 0.95, 1])
-  translate([PADDING, PADDING + (0.025 * font_size), base_depth]) {
+  scale([1, 1 - HEIGHT_SHRINKAGE, 1])
+  translate([PADDING, PADDING + ((HEIGHT_SHRINKAGE / 2) * font_size), base_depth]) {
     linear_extrude(slot_depth) {
       name(NAME, font_size, bold = false);
     }
@@ -65,4 +66,5 @@ font_size = MAX_WIDTH / len(NAME);
 width = namelen(NAME, font_size);
 
 name_box(NAME, width, BASE_DEPTH, SLOT_DEPTH, font_size);
+translate([0, font_size + abs(2 * PADDING), 0])
 name_3d(NAME, BASE_DEPTH, SLOT_DEPTH, font_size);
