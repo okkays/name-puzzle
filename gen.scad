@@ -66,5 +66,5 @@ font_size = MAX_WIDTH / len(NAME);
 width = namelen(NAME, font_size);
 
 name_box(NAME, width, BASE_DEPTH, SLOT_DEPTH, font_size);
-translate([0, font_size + abs(2 * PADDING), 0])
+translate([0, font_size + abs(2 * PADDING), -BASE_DEPTH])
 name_3d(NAME, BASE_DEPTH, SLOT_DEPTH, font_size);
