@@ -12,7 +12,9 @@ You'll need to download Instruction to use that font (see below).
 
 See gen.scad
 
-## See also
+## Dependencies
 
-[Instruction](https://www.dafont.com/instruction.font) font (symmetrical fonts work great)
-measureText from https://www.thingiverse.com/thing:3004457
+(a.k.a. projects doing all of the legwork)
+
+- [Instruction](https://www.dafont.com/instruction.font) font (symmetrical fonts work great)
+- measureText from https://www.thingiverse.com/thing:3004457
